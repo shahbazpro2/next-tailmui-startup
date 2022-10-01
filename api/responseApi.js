@@ -28,11 +28,11 @@ const responseApi = async (url, method, data, headerData = {}) => {
         })
 
         if (!res.data.hasOwnProperty('data'))
-            return { error: false, status: res.status, data: res.data, message: [] }
+            return { error: false, status: res.status, data: res.data, message: [], fullRes: res.data }
         else if (res.data.hasOwnProperty('message'))
-            return { error: false, status: res.status, data: res.data.data, message: objectToArray(res.data.message) }
+            return { error: false, status: res.status, data: res.data.data, message: objectToArray(res.data.message), fullRes: res.data }
         else
-            return { error: false, status: res.status, data: res.data.data, message: objectToArray(res.data.data) }
+            return { error: false, status: res.status, data: res.data.data, message: objectToArray(res.data.data), fullRes: res.data }
     } catch (err) {
         let data
         if (err.response?.status === 500) {
@@ -45,7 +45,7 @@ const responseApi = async (url, method, data, headerData = {}) => {
         else
             data = { status: err.response?.status, message: objectToArray(err.response?.data) }
 
-        return { error: true, ...data, data: null }
+        return { error: true, ...data, data: null, fullRes: err.response?.data }
     }
 
 }
