@@ -14,7 +14,7 @@ const useApi = (
 		error: null,
 		data: null,
 		message: null,
-		resData: null,
+		fullRes: null,
 	})
 
 	useEffect(() => {
@@ -41,7 +41,7 @@ const useApi = (
 					error: res.error,
 					message: resSuccessMsg || res.message,
 					data: !res.error ? res.data : null,
-					resData: res?.resData,
+					fullRes: res?.fullRes,
 				});
 				(successMsg && config?.successMsg !== false) && context.setFeedback(resSuccessMsg || res.message, 'success')
 			} else if (res.error) {
@@ -50,7 +50,7 @@ const useApi = (
 					error: res.error,
 					message: resErrMsg || res.message,
 					data: !res.error ? res.data : null,
-					resData: res?.resData,
+					fullRes: res?.fullRes,
 				});
 
 				(errMsg && config?.errMsg !== false) && context.setFeedback(resErrMsg || res.message, 'error')
