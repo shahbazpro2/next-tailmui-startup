@@ -4,16 +4,16 @@ import React, { useState } from 'react'
 
 const FeedbackWrapper = ({ children }) => {
     const [state, setState] = useState({
-        error: null,
-        success: null
+        message: null,
+        type: 'error'
     })
 
     const contextValue = {
-        error: state.error,
-        success: state.success,
-        setFeedback: (message, error) => {
-            error ?
-                setState({ success: null, error: message }) : setState({ error: null, success: message })
+        setFeedback: (message, type) => {
+            setState({
+                message,
+                type
+            })
 
         }
     }
@@ -22,7 +22,7 @@ const FeedbackWrapper = ({ children }) => {
         <>
             <FeedbackContext.Provider value={contextValue}>
                 {children}
-                <FeedbackAlert error={state.error} success={state.success} setError={() => setState({ ...state, error: null })} setSuccess={() => setState({ ...state, success: null })} />
+                <FeedbackAlert type={state.type} message={state.message} setFeedback={() => setState({ ...state, message: null })} />
             </FeedbackContext.Provider>
         </>
     )

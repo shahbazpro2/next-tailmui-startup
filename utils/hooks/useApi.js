@@ -43,7 +43,7 @@ const useApi = (
 					data: !res.error ? res.data : null,
 					resData: res?.resData,
 				});
-				(successMsg && config?.successMsg !== false) && context.setFeedback(resSuccessMsg || res.message, res.error)
+				(successMsg && config?.successMsg !== false) && context.setFeedback(resSuccessMsg || res.message, 'success')
 			} else if (res.error) {
 				setState({
 					loading: false,
@@ -53,7 +53,7 @@ const useApi = (
 					resData: res?.resData,
 				});
 
-				(errMsg && config?.errMsg !== false) && context.setFeedback(resErrMsg || res.message, res.error)
+				(errMsg && config?.errMsg !== false) && context.setFeedback(resErrMsg || res.message, 'error')
 			}
 			if (!res.error) {
 				if (callback) callback(res)
