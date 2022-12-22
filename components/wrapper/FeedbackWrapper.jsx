@@ -1,29 +1,18 @@
 import FeedbackAlert from '@common/feedback/FeedbackAlert'
-import { FeedbackContext } from '@context/FeedbackContext'
-import React, { useState } from 'react'
+import { atom, useAtom } from 'jotai'
+import React from 'react'
 
-const FeedbackWrapper = ({ children }) => {
-    const [state, setState] = useState({
-        message: null,
-        type: 'error'
-    })
+export const feedbackAtom = atom({
+    message: null,
+    type: 'error'
+})
 
-    const contextValue = {
-        setFeedback: (message, type) => {
-            setState({
-                message,
-                type
-            })
-
-        }
-    }
-
+const FeedbackWrapper = () => {
+    const [state, setState] = useAtom(feedbackAtom)
+    console.log('st', state)
     return (
         <>
-            <FeedbackContext.Provider value={contextValue}>
-                {children}
-                <FeedbackAlert type={state.type} message={state.message} setFeedback={() => setState({ ...state, message: null })} />
-            </FeedbackContext.Provider>
+            <FeedbackAlert type={state.type} message={state.message} setFeedback={() => setState({ ...state, message: null })} />
         </>
     )
 }

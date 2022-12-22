@@ -1,21 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FeedbackContext } from "@context/FeedbackContext"
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { setApiCache } from "redux/ApiCacheSlice"
+import { uuid } from "uuidv4"
+
 
 const useApi = (
-	{ errMsg, successMsg, resErrMsg, resSuccessMsg } = { errMsg: true, resErrMsg: "", resSuccessMsg: "" },
+	{ errMsg, successMsg, resErrMsg, resSuccessMsg, cache } = { errMsg: true, resErrMsg: "", resSuccessMsg: "" },
 	apiFun,
 	callback,
 	errCallback
 ) => {
-	const context = useContext(FeedbackContext)
-	const [state, setState] = useState({
-		loading: false,
-		error: null,
-		data: null,
-		message: null,
-		fullRes: null,
-	})
+	const dispatch = useDispatch()
+	const select = useSelector(state => state.apiCache[cache])
+	const [state, setState] = useState({})
+	const [key, setKey] = useState(uuid())
+
+
 
 	useEffect(() => {
 		if (apiFun) {
@@ -30,30 +31,64 @@ const useApi = (
 	}
 
 	const processing = async (api, callback, errCallback, config) => {
-		setState({ ...state, loading: config?.loading ?? true })
+		let stateVal = {
+			...state[cache || key], loading: config?.loading ?? true
+		}
+		if (cache) dispatch(setApiCache({
+			key: cache,
+			value: { ...select, stateVal }
+		}))
+		else
+			setState(prevState => ({ ...prevState, [cache || key]: { ...stateVal, allState: stateVal } }))
+
+
 		let res = null
 		if (api instanceof Function) res = await api()
 		else res = await api
 		if (res) {
+
 			if (!res.error) {
-				setState({
+				stateVal = {
 					loading: false,
 					error: res.error,
 					message: resSuccessMsg || res.message,
 					data: !res.error ? res.data : null,
-					fullRes: res?.fullRes,
-				});
-				(successMsg && config?.successMsg !== false) && context.setFeedback(resSuccessMsg || res.message, 'success')
+					resData: res?.resData
+				}
+				if (cache) {
+					dispatch(setApiCache({
+						key: cache,
+						value: { ...stateVal, allState: stateVal }
+					}))
+				} else
+					setState(prevState => ({ ...prevState, [key]: { ...stateVal, allState: stateVal } }));
+
+				(successMsg && config?.successMsg !== false) && setFeedback({ message: resSuccessMsg || res.message, type: 'success' })
 			} else if (res.error) {
-				setState({
+				stateVal = {
 					loading: false,
 					error: res.error,
 					message: resErrMsg || res.message,
 					data: !res.error ? res.data : null,
-					fullRes: res?.fullRes,
-				});
+					resData: res?.resData,
+					allState: stateVal
+				}
+				if (cache) {
+					dispatch(setApiCache({
+						key: cache,
+						value: { ...stateVal, allState: stateVal }
+					}))
+				} else {
+					setState(prevState => ({
+						...prevState,
+						[key]: {
+							...stateVal,
+							allState: stateVal
+						}
+					}));
+				}
 
-				(errMsg && config?.errMsg !== false) && context.setFeedback(resErrMsg || res.message, 'error')
+				(errMsg && config?.errMsg !== false) && setFeedback({ message: resErrMsg || res.message, type: 'error' })
 			}
 			if (!res.error) {
 				if (callback) callback(res)
@@ -63,7 +98,11 @@ const useApi = (
 			}
 		}
 	}
-	return [executeApi, { ...state }]
+	if (cache)
+		return [executeApi, { ...select }]
+
+	return [executeApi, { ...state[key] }]
+
 }
 
 export default useApi
