@@ -1854,10 +1854,10 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
-jotai@^1.8.6:
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/jotai/-/jotai-1.11.1.tgz#a85d2ba34363e831e1e2aa74dead4a0b1ac9e5ae"
-  integrity sha512-pHpaZUdvIpcS12ryMCrwtvmT/IovZAbicfrlll/Rb9394rwhqKoDFsDs0kv4oWtBy/XHHNv7iSZnQFmntiQj+w==
+jotai@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.1.0.tgz#b1a9525345518453802e4a64d99e2800598bab76"
+  integrity sha512-fR82PtHAmEQrc/daMEYGc4EteW96/b6wodtDSCzLvoJA/6y4YG70er4hh2f8CYwYjqwQ0eZUModGfG4DmwkTyQ==
 
 js-sdsl@^4.1.4:
   version "4.2.0"
@@ -2940,6 +2940,24 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+use-hook-api@3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/use-hook-api/-/use-hook-api-3.0.3.tgz#ba964c4826266c13137f19d60dadb08ff1f811bd"
+  integrity sha512-lhMLW/wD/bhz5YtswsjwNfuScAD1gGFM9z8MlGtXs3mEGgWRQbmkEDeMR0HzS9SmTWjdjKjmwVd6Tqxq2zYSMQ==
+  dependencies:
+    axios "^0.27.2"
+    jotai "^2.1.0"
+    use-hook-api "^1.0.0"
+    uuidv4 "^6.2.13"
+
+use-hook-api@^1.0.0:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/use-hook-api/-/use-hook-api-1.0.7.tgz#c83dfa4388da44a04f22a8b66d98f2c9916d93a4"
+  integrity sha512-qifJDVIkt3oq9Ktnl4NyQuRMwM67kIf5zhVcc8BsnLHuzdwAcFy44qpQjqZE0LSk3j0L7LJmQqEOCV6cuw87gQ==
+  dependencies:
+    axios "^0.27.2"
+    use-hook-api "^1.0.0"
 
 use-sync-external-store@1.2.0, use-sync-external-store@^1.0.0:
   version "1.2.0"

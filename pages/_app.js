@@ -1,24 +1,20 @@
 
 import { StyledEngineProvider, ThemeProvider } from '@mui/material'
-import { QueryClient, QueryClientProvider } from 'react-query'
 import '../styles/globals.css'
 import theme from '../theme'
-import { Provider } from "react-redux"
-import { useStore } from 'redux/store'
-const queryClient = new QueryClient()
-
+import FeedbackWrapper from '@components/wrapper/FeedbackWrapper'
+import { apiResStructure } from 'use-hook-api'
+apiResStructure.dataKey = 'data'
+apiResStructure.errKey = 'message'
 function MyApp({ Component, pageProps }) {
-  const store = useStore(pageProps.initialReduxState)
   return <StyledEngineProvider injectFirst>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <Component {...pageProps} />
+    <ThemeProvider theme={theme}>
 
-        </Provider>
+      <Component {...pageProps} />
 
-      </ThemeProvider>
-    </QueryClientProvider>
+      <FeedbackWrapper />
+
+    </ThemeProvider>
   </StyledEngineProvider>
 }
 

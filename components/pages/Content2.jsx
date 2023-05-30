@@ -1,14 +1,11 @@
 import { testApi } from '@api/test'
-import FeedbackWrapper from '@components/wrapper/FeedbackWrapper'
 import { Button } from '@mui/material'
-import useApi from '@utils/hooks/useApi'
 import React from 'react'
-import { useQuery } from 'react-query'
+import { useApi } from 'use-hook-api'
 
 const Content2 = () => {
     const [getContent2, { data, loading }] = useApi({ cache: 'content2' }, () => testApi(1))
     /* const { data, status, isLoading, refetch } = useQuery('content2', testApi) */
-
     const refetchData = () => {
         //refetchAtom?.(testApi(), null, null, { loading: false })
     }

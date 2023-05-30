@@ -1,18 +1,14 @@
 import FeedbackAlert from '@common/feedback/FeedbackAlert'
-import { atom, useAtom } from 'jotai'
 import React from 'react'
-
-export const feedbackAtom = atom({
-    message: null,
-    type: 'error'
-})
+import { useFeedbackState } from 'use-hook-api'
 
 const FeedbackWrapper = () => {
-    const [state, setState] = useAtom(feedbackAtom)
-    console.log('st', state)
+    const [feedbackState, clearFeedback] = useFeedbackState()
+    const { message, type } = feedbackState
     return (
         <>
-            <FeedbackAlert type={state.type} message={state.message} setFeedback={() => setState({ ...state, message: null })} />
+
+            <FeedbackAlert type={type} message={message} setFeedback={clearFeedback} />
         </>
     )
 }
