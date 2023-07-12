@@ -1,29 +1,15 @@
 import FeedbackAlert from '@common/feedback/FeedbackAlert'
-import { FeedbackContext } from '@context/FeedbackContext'
-import React, { useState } from 'react'
+import React from 'react'
+import { useFeedbackState } from 'use-hook-api'
 
-const FeedbackWrapper = ({ children }) => {
-    const [state, setState] = useState({
-        message: null,
-        type: 'error'
-    })
-
-    const contextValue = {
-        setFeedback: (message, type) => {
-            setState({
-                message,
-                type
-            })
-
-        }
-    }
-
+const FeedbackWrapper = () => {
+    const [feedbackState, clearFeedback] = useFeedbackState()
+    const { message, type } = feedbackState
+    console.log('typefeed', type)
     return (
         <>
-            <FeedbackContext.Provider value={contextValue}>
-                {children}
-                <FeedbackAlert type={state.type} message={state.message} setFeedback={() => setState({ ...state, message: null })} />
-            </FeedbackContext.Provider>
+
+            <FeedbackAlert type={type} message={message} setFeedback={clearFeedback} />
         </>
     )
 }

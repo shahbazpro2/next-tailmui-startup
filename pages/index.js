@@ -1,6 +1,7 @@
+import Home from '@pages/Home'
 import Head from 'next/head'
 
-export default function Home() {
+export default function Index() {
   return (
     <div>
       <Head>
@@ -8,7 +9,7 @@ export default function Home() {
         <meta name="description" content="App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Home />
     </div>
   )
 }

@@ -13,7 +13,7 @@ const SnakbarAlert = ({ open, handleClose, message, type }) => {
     }
 
     return (
-        <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }} open={open} autoHideDuration={2000} onClose={onSnakClose}>
+        <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }} open={open} autoHideDuration={5000} onClose={onSnakClose}>
             <Alert variant="filled" onClose={onSnakClose} severity={type} sx={{ width: '100%' }}>
 
                 {
