@@ -5,7 +5,7 @@ import SnakbarAlert from './SnakbarAlert.jsx'
 const FeedbackAlert = ({ type, message, setFeedback }) => {
     return (
         <div>
-            {Array.isArray(message) && <SnakbarAlert open={message.length ? true : false} handleClose={setFeedback} message={message} type={type} />}
+            {message && <SnakbarAlert open={message.length ? true : false} handleClose={setFeedback} message={message} type={type} />}
         </div>
     )
 }
