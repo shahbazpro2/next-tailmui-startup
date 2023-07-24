@@ -3,30 +3,31 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { company } from './company/Details';
 export const SocialLinks = [
   {
     name: 'Facebook',
-    href: 'https://www.facebook.com/eltonbullittcars/?fref=ts',
+    href: `${company.Facebook}`,
     icon: <FacebookIcon />,
   },
   {
     name: 'Twitter',
-    href: 'https://twitter.com/EltonBullitt?lang=en',
+    href: `${company.Twitter}`,
     icon: <TwitterIcon />,
   },
   {
     name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/elton-bullitt-291863199/',
+    href: `${company.LinkedIn}`,
     icon: <LinkedInIcon />,
   },
   {
     name: 'YouTube',
-    href: 'https://www.youtube.com/channel/UCpLp5aRr6fyQiFERikwP11w',
+    href: `${company.YouTube}`,
     icon: <YouTubeIcon />,
   },
   {
     name: 'Instagram',
-    href: 'https://www.instagram.com/eltonbullittbury/',
+    href: `${company.Instagram}`,
     icon: <InstagramIcon />,
   },
 ];

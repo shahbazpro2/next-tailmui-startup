@@ -1,15 +1,17 @@
-import Home from '@pages/Home'
-import Head from 'next/head'
+import { company } from '@components/config/company/Details';
+import { JsonLdReview } from '@components/config/strucureData/ReviewsJsonLd';
+import Home from '@pages/Home';
+import { DefaultSeo, NextSeo, OrganizationJsonLd } from 'next-seo';
+import { NEXT_SEO_DEFAULT } from 'next-seo.config';
 
 export default function Index() {
   return (
     <div>
-      <Head>
-        <title>App</title>
-        <meta name="description" content="App" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <NextSeo canonical={`${company.url}`} />
+      <DefaultSeo {...NEXT_SEO_DEFAULT} />
+      <JsonLdReview />
+      <OrganizationJsonLd />
       <Home />
     </div>
-  )
+  );
 }

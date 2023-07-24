@@ -1,12 +1,14 @@
+import { company } from './company/Details';
+
 export const Appstorelinks = [
   {
     Imgsrc: '/assets/images/playStore.png',
-    href: 'https://play.google.com/store/apps/details?id=com.autocab.taxibooker.eltonbullitt.bury&hl=en_GBhttp://&pli=1',
+    href: company.google_store_url,
     alt: 'Android App Store Icon',
   },
   {
     Imgsrc: '/assets/images/appleStore.png',
-    href: 'https://apps.apple.com/gb/app/elton-bullitt-bury/id735968069',
+    href: company.apple_store_url,
     alt: 'Apple Store Icon',
   },
 ];

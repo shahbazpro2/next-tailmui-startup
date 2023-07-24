@@ -9,6 +9,10 @@ export const HeaderTitles = [
         href: '/about-us'
     },
     {
+        name: 'Drive With Us',
+        href: '/drive-with-us'
+    },
+    {
         name: 'Airport Transfers',
         href: '/airport-transfers'
     },
