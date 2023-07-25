@@ -1,7 +1,37 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+        "@common/*": [
+            "./components/common/*"
+        ],
+        "@styles/*": [
+            "./components/styles/*"
+        ],
+        "@pages/*": [
+            "./components/pagesComp/*"
+        ],
+        "@components/*": [
+            "./components/*"
+        ],
+        "@utils/*": [
+            "./utils/*"
+        ],
+        "@api/*":[
+            "./api/*"
+        ],
+        "@context/*":[
+            "./context/*"
+        ],
+        "@hooks/*": [
+            "./hooks/*"
+        ],
+        "@constants/*": [
+            "./constants/*"
+        ]
     }
+},
+"exclude": [
+    "node_modules"
+]
   }
-}
